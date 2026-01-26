@@ -1,0 +1,230 @@
+/* BuildInfo Component Styles */
+
+.build-info-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.build-info-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.build-info-toggle:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.build-info-icon {
+  font-size: 1rem;
+}
+
+.build-info-version {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.env-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.env-prod {
+  background: #10b981;
+  color: white;
+}
+
+.env-staging {
+  background: #f59e0b;
+  color: white;
+}
+
+.env-dev {
+  background: #6366f1;
+  color: white;
+}
+
+.build-info-panel {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  width: 400px;
+  max-width: 90vw;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.build-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.build-info-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.build-info-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.build-info-close:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.build-info-content {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.build-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.build-info-row:last-child {
+  border-bottom: none;
+}
+
+.build-info-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.build-info-value {
+  color: var(--text);
+  font-size: 0.875rem;
+  text-align: right;
+  word-break: break-word;
+}
+
+.build-info-mono {
+  font-family: 'Courier New', Courier, monospace;
+  background: #0a0f1e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.build-info-small {
+  font-size: 0.75rem;
+}
+
+.commit-link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.commit-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.build-info-footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.build-info-footer small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .build-info-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .build-info-panel {
+    width: 90vw;
+    right: -10px;
+  }
+
+  .build-info-toggle {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .build-info-version {
+    display: none;
+  }
+}
+
+/* Scrollbar 样式 */
+.build-info-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.build-info-content::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+.build-info-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.build-info-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import BuildInfo from './components/BuildInfo'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         {/* CI 状态徽章 */}
         <section className="badges">
           <img
-            src="https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/golden-path-demo/deploy.yml?label=CI%2FCD&style=flat-square"
+            src={`https://img.shields.io/github/actions/workflow/status/${import.meta.env.VITE_GITHUB_USERNAME}/${import.meta.env.VITE_GITHUB_REPO}/deploy.yml?label=CI%2FCD&style=flat-square`}
             alt="CI/CD Status"
           />
           <img
@@ -175,18 +176,21 @@ function App() {
         <div className="container">
           <p>Made with ❤️ using Golden Path Best Practices</p>
           <p className="footer-links">
-            <a href="https://github.com/YOUR_USERNAME/golden-path-demo" target="_blank" rel="noopener noreferrer">
+            <a href={`https://github.com/${import.meta.env.VITE_GITHUB_USERNAME}/${import.meta.env.VITE_GITHUB_REPO}`} target="_blank" rel="noopener noreferrer">
               GitHub
             </a>
             {' · '}
-            <a href="https://tiga2000.com" target="_blank" rel="noopener noreferrer">
-              tiga2000.com
+            <a href={`https://${import.meta.env.VITE_DOMAIN}`} target="_blank" rel="noopener noreferrer">
+              {import.meta.env.VITE_DOMAIN}
             </a>
             {' · '}
             <a href="/health">Health Check</a>
           </p>
         </div>
       </footer>
+
+      {/* Build Info Component - 右下角版本信息 */}
+      <BuildInfo />
     </div>
   )
 }
