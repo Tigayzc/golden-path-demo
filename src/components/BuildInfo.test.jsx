@@ -53,7 +53,8 @@ describe('BuildInfo', () => {
 
     fireEvent.click(toggleButton)
 
-    expect(screen.getByText(/abc1234/i)).toBeInTheDocument()
+    //expect(screen.getByText(/abc1234/i)).toBeInTheDocument()
+    expect(screen.getByText(/^abc1234$/i)).toBeInTheDocument()
     expect(screen.getByText(/main/i)).toBeInTheDocument()
   })
 
