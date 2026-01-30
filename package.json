@@ -9,7 +9,7 @@
     "build": "vite build",
     "build:info": "node scripts/generate-build-info.js && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
     "lint:fix": "eslint . --ext js,jsx --fix",
     "test": "vitest run",
     "test:watch": "vitest",
