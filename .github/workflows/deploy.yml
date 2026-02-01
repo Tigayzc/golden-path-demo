@@ -36,9 +36,8 @@ jobs:
       - name: 📥 Download build artifact from CI
         uses: actions/download-artifact@v4
         with:
-          name: dist-${{ github.event.workflow_run.head_sha }}
-          path: dist
           run-id: ${{ github.event.workflow_run.id }}
+          path: dist
 
       - name: 🔍 Verify dist contents
         run: |
