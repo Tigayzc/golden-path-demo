@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: read
       deployments: write
+      actions: read     # ✅ 必须加这一行
 
     if: >
       github.event.workflow_run.conclusion == 'success' &&
