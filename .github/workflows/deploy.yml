@@ -37,7 +37,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           run-id: ${{ github.event.workflow_run.id }}
-          path: dist
+          name: dist
+          path: .
 
       - name: 🔍 Verify dist contents
         run: |
