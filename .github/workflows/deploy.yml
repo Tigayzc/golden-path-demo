@@ -5,6 +5,9 @@ on:
     workflows: ["CI"]
     types: [completed]
 
+permissions:
+  actions: read
+  contents: read
 
 jobs:
   build-and-deploy:
@@ -19,6 +22,17 @@ jobs:
       github.event.workflow_run.head_branch == 'main'
 
     steps:
+      - name: 🧾 List artifacts from CI run (debug)
+        env:
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "CI run id: $RUN_ID"
+          curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/artifacts"
+      
       - name: 📥 Download build artifact from CI
         uses: actions/download-artifact@v4
         with:
