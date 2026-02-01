@@ -23,7 +23,8 @@ jobs:
         with:
           name: dist-${{ github.event.workflow_run.head_sha }}
           path: dist
-          
+          run-id: ${{ github.event.workflow_run.id }}
+
       - name: 🔍 Verify dist contents
         run: |
           echo "Dist contents:"
