@@ -73,9 +73,9 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          VITE_GITHUB_USERNAME: ${{ github.repository_owner }}
-          VITE_GITHUB_REPO: ${{ github.event.repository.name }}
-          VITE_DOMAIN: tiga2000.com
+          VITE_GITHUB_USERNAME: ${{ vars.VITE_GITHUB_USERNAME }}
+          VITE_GITHUB_REPO: ${{ vars.VITE_GITHUB_REPO }}
+          VITE_DOMAIN: ${{ vars.VITE_DOMAIN }}
 
       - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v4
