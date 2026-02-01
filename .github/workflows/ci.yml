@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-      - develop
+      - dev
   pull_request:
     branches:
       - main
-      - develop
 
 # 取消同一 PR/branch 的旧构建
 concurrency:
@@ -196,3 +195,5 @@ jobs:
                 body: body
               });
             }
+
+
