@@ -18,20 +18,17 @@ jobs:
       github.event.workflow_run.head_branch == 'main'
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: 📥 Download build artifact from CI
+        uses: actions/download-artifact@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
+          name: dist-${{ github.event.workflow_run.head_sha }}
+          path: dist
+          
+      - name: 🔍 Verify dist contents
+        run: |
+          echo "Dist contents:"
+          ls -lh dist
+          test -f dist/index.html
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -44,7 +41,7 @@ jobs:
           branch: main
 
       - name: Health Check
-        if: github.ref == 'refs/heads/main'
+        if: github.event.workflow_run.head_branch == 'main'
         run: |
           echo "Waiting for deployment to be ready..."
           sleep 30
