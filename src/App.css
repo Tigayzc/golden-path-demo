@@ -7,8 +7,18 @@
 .header {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   padding: 3rem 0;
-  text-align: center;
   border-bottom: 2px solid var(--primary);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-content > div {
+  text-align: left;
 }
 
 .header h1 {
@@ -20,6 +30,44 @@
 .subtitle {
   color: var(--text-muted);
   font-size: 1.1rem;
+}
+
+.problems-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(245, 158, 11, 0.2);
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.problems-button:hover {
+  background: rgba(245, 158, 11, 0.3);
+  border-color: #fbbf24;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-content > div {
+    text-align: center;
+  }
+
+  .problems-button {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .container {
