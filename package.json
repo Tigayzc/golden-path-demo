@@ -1,41 +1,37 @@
 {
   "name": "golden-path-demo",
-  "private": true,
   "version": "1.0.0",
-  "type": "module",
-  "description": "Golden Path DevOps Demo - GitHub Actions + Cloudflare Pages + Terraform",
+  "private": true,
+  "description": "Golden Path DevOps Demo - Monorepo with Cloudflare Pages + Workers",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:info": "node scripts/generate-build-info.js && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
-    "lint:fix": "eslint . --ext js,jsx --fix",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "dev": "npm run dev --workspace=@golden-path-demo/frontend",
+    "dev:api": "npm run dev --workspace=@golden-path-demo/api",
+    "dev:all": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "build:frontend": "npm run build --workspace=@golden-path-demo/frontend",
+    "build:api": "npm run build --workspace=@golden-path-demo/api",
+    "test": "npm run test --workspaces --if-present",
+    "test:frontend": "npm run test --workspace=@golden-path-demo/frontend",
+    "test:api": "npm run test --workspace=@golden-path-demo/api",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "deploy:api": "npm run deploy --workspace=@golden-path-demo/api"
   },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.13.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tigayzc/golden-path-demo.git"
   },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.1",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "@vitest/coverage-v8": "^1.1.0",
-    "@vitest/ui": "^1.1.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "jsdom": "^23.0.1",
-    "vite": "^5.4.2",
-    "vitest": "^1.1.0"
-  }
+  "keywords": [
+    "cloudflare",
+    "pages",
+    "workers",
+    "devops",
+    "terraform",
+    "github-actions"
+  ],
+  "author": "Tigayzc",
+  "license": "MIT"
 }

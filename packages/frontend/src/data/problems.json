@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Blank page & MIME type error on Cloudflare Pages",
+    "date": "2026-01-31",
+    "category": "Cloudflare",
+    "description": "After deploying a React/Vite project to Cloudflare Pages, the site loaded but showed a blank page. The browser console reported a MIME type error where JSX files were served directly instead of compiled JavaScript.",
+    "solution": "Ensured the project was built in GitHub Actions using `npm run build` and deployed only the generated `dist/` directory. Injected all required `VITE_*` environment variables during the CI build step via GitHub Variables.",
+    "status": "resolved"
+  },
+  {
+    "id": 2,
+    "title": "Deploy workflow unable to download build artifacts",
+    "date": "2026-02-01",
+    "category": "Github Action",
+    "description": "The deploy workflow triggered by `workflow_run` could not find the build artifact uploaded by the CI workflow, even though the artifact existed.",
+    "solution": "Used `actions/download-artifact@v4` with the correct `run-id` from `github.event.workflow_run.id` and explicitly provided `github-token` to grant cross-workflow access permissions.",
+    "status": "resolved"
+  }
+]
