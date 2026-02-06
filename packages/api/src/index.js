@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
+import problemsData from '../data/problems.json'
 
 const app = new Hono()
 
@@ -49,18 +50,10 @@ app.get('/api/build-info', (c) => {
 // Get problems data from JSON file
 app.get('/api/problems', async (c) => {
   try {
-    // 在 Cloudflare Workers 中，我们需要将 JSON 文件作为模块导入
-    // 或者在部署时将数据存储到 KV/D1
-    // 这里我们直接导入 JSON 数据
-    const problemsData = await import('../data/problems.json', {
-      assert: { type: 'json' }
-    })
-
-    const problems = problemsData.default || problemsData
-
+    // problemsData 已经在文件顶部导入
     return c.json({
-      data: problems,
-      count: problems.length,
+      data: problemsData,
+      count: problemsData.length,
       timestamp: new Date().toISOString()
     })
   } catch (error) {
