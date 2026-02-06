@@ -8,10 +8,9 @@ compatibility_flags = ["nodejs_compat"]
 port = 8787
 ip = "127.0.0.1"
 
-# Workers Routes - API 将通过 /api/* 路径访问
-routes = [
-  { pattern = "tiga2000.com/api/*", zone_name = "tiga2000.com" }
-]
+# Workers Routes - 由 Terraform 管理，不在这里配置
+# routes 配置会导致部署失败，因为需要额外的 zone_id 权限
+# 通过 Terraform 的 cloudflare_workers_route 资源来管理路由
 
 # Environment Variables
 [vars]

@@ -38,7 +38,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: packages/api
-          command: deploy
+          command: deploy --log-level debug
 
       - name: ✅ Deployment summary
         if: success()

@@ -84,22 +84,22 @@ resource "cloudflare_zone_settings_override" "tiga2000_com_settings" {
   }
 }
 
-# Cloudflare Workers Script for API
-resource "cloudflare_workers_script" "golden_path_demo_api" {
-  account_id = var.cloudflare_account_id
-  name       = "golden-path-demo-api"
-  content    = file("${path.module}/../packages/api/src/index.js")
-
-  # Note: In practice, we deploy via wrangler in CI/CD
-  # This resource is mainly for route configuration
-}
-
-# Workers Route - 将 /api/* 路由到 Worker
-resource "cloudflare_workers_route" "api_route" {
-  zone_id     = data.cloudflare_zone.tiga2000_com.id
-  pattern     = "tiga2000.com/api/*"
-  script_name = cloudflare_workers_script.golden_path_demo_api.name
-}
+# Workers Route - 暂不通过 Terraform 管理
+# Worker 通过 GitHub Actions + wrangler 部署
+# Route 需要在 Cloudflare Dashboard 手动配置：
+#   1. 进入 Cloudflare Dashboard
+#   2. 选择域名 tiga2000.com
+#   3. Workers Routes → Add Route
+#   4. Route: tiga2000.com/api/*
+#   5. Worker: golden-path-demo-api
+#
+# 如果未来需要 Terraform 管理 Route，取消下面的注释：
+#
+# resource "cloudflare_workers_route" "api_route" {
+#   zone_id     = data.cloudflare_zone.tiga2000_com.id
+#   pattern     = "tiga2000.com/api/*"
+#   script_name = "golden-path-demo-api"
+# }
 
 # Outputs
 output "pages_subdomain" {
