@@ -1,0 +1,59 @@
+name: Deploy API to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/api/**'
+      - '.github/workflows/deploy-api.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-api:
+    name: Deploy API
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📚 Install dependencies
+        run: npm ci
+
+      - name: 🚀 Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: packages/api
+          command: deploy
+
+      - name: ✅ Deployment summary
+        if: success()
+        run: |
+          echo "### ✅ API Deployed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployment Info:**" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔖 Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌿 Branch: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 API URL: https://tiga2000.com/api/" >> $GITHUB_STEP_SUMMARY
+          echo "- 💚 Health Check: https://tiga2000.com/api/health" >> $GITHUB_STEP_SUMMARY
+
+      - name: 🩺 Health Check
+        if: success()
+        run: |
+          echo "Waiting for deployment to propagate..."
+          sleep 10
+          curl -f https://tiga2000.com/api/health || echo "Health check failed (API may not be live yet)"

@@ -84,6 +84,23 @@ resource "cloudflare_zone_settings_override" "tiga2000_com_settings" {
   }
 }
 
+# Cloudflare Workers Script for API
+resource "cloudflare_workers_script" "golden_path_demo_api" {
+  account_id = var.cloudflare_account_id
+  name       = "golden-path-demo-api"
+  content    = file("${path.module}/../packages/api/src/index.js")
+
+  # Note: In practice, we deploy via wrangler in CI/CD
+  # This resource is mainly for route configuration
+}
+
+# Workers Route - 将 /api/* 路由到 Worker
+resource "cloudflare_workers_route" "api_route" {
+  zone_id     = data.cloudflare_zone.tiga2000_com.id
+  pattern     = "tiga2000.com/api/*"
+  script_name = cloudflare_workers_script.golden_path_demo_api.name
+}
+
 # Outputs
 output "pages_subdomain" {
   value       = cloudflare_pages_project.golden_path_demo.subdomain
@@ -98,4 +115,9 @@ output "custom_domain" {
 output "deployment_url" {
   value       = "https://${cloudflare_pages_domain.tiga2000_com.domain}"
   description = "The production deployment URL"
+}
+
+output "api_url" {
+  value       = "https://${cloudflare_pages_domain.tiga2000_com.domain}/api"
+  description = "The API endpoint URL"
 }

@@ -1,53 +1,130 @@
 # 🛤️ Golden Path Demo
 
-[![CI/CD](https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/golden-path-demo/deploy.yml?label=CI%2FCD&style=flat-square)](https://github.com/YOUR_USERNAME/golden-path-demo/actions)
-[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?style=flat-square&logo=cloudflare)](https://tiga2000.com)
+[![CI/CD](https://img.shields.io/github/actions/workflow/status/Tigayzc/golden-path-demo/ci.yml?label=CI&style=flat-square)](https://github.com/Tigayzc/golden-path-demo/actions)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/Tigayzc/golden-path-demo/deploy.yml?label=Deploy&style=flat-square)](https://github.com/Tigayzc/golden-path-demo/actions)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Pages%20%2B%20Workers-F38020?style=flat-square&logo=cloudflare)](https://tiga2000.com)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=flat-square&logo=terraform)](./terraform)
 
-A complete example of modern DevOps workflow best practices, demonstrating the Golden Path from code to production.
+A complete monorepo example of modern DevOps workflow best practices, demonstrating the Golden Path from code to production with **Cloudflare Pages (Frontend)** and **Cloudflare Workers (API)**.
 
 ## 🌟 Features
 
+- **Monorepo Structure**: Frontend + API in a single repository with npm workspaces
 - **Automated CI/CD**: GitHub Actions for automatic build, test, and deployment
-- **Edge Computing**: Cloudflare Pages with global CDN acceleration
+- **Edge Computing**:
+  - Cloudflare Pages for frontend with global CDN
+  - Cloudflare Workers for serverless API
 - **Infrastructure as Code**: Terraform manages all cloud resources
 - **Custom Domain**: `tiga2000.com` with SSL certificate configuration
-- **Health Monitoring**: `/health` endpoint for system status
-- **Modern Stack**: React + Vite + Cloudflare
+- **API Routes**: `/api/*` paths served by Cloudflare Workers
+- **Health Monitoring**: API health check endpoints
+- **Modern Stack**: React + Vite + Hono + Cloudflare
 
 ## 🏗️ Architecture Overview
 
 ```
-GitHub Repository
-      ↓
-GitHub Actions (CI/CD)
-      ↓
-Cloudflare Pages
-      ↓
-tiga2000.com (Custom Domain)
-      ↑
-Terraform (Infrastructure Management)
+┌─────────────────────────────────────────────────────┐
+│              GitHub Repository (Monorepo)           │
+│  ┌──────────────────┐    ┌─────────────────────┐   │
+│  │ packages/frontend│    │   packages/api      │   │
+│  │  (React + Vite)  │    │  (Hono + Workers)   │   │
+│  └──────────────────┘    └─────────────────────┘   │
+└────────────┬──────────────────────┬─────────────────┘
+             │                      │
+             ▼                      ▼
+     ┌──────────────┐      ┌──────────────┐
+     │GitHub Actions│      │GitHub Actions│
+     │   (CI Build) │      │ (API Deploy) │
+     └──────┬───────┘      └──────┬───────┘
+            │                     │
+            ▼                     ▼
+     ┌──────────────┐      ┌──────────────┐
+     │  Cloudflare  │      │  Cloudflare  │
+     │    Pages     │      │   Workers    │
+     └──────┬───────┘      └──────┬───────┘
+            │                     │
+            └──────────┬──────────┘
+                       ▼
+              tiga2000.com (Custom Domain)
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+        ▼              ▼              ▼
+    / (Pages)    /api/* (Workers)  /health
+                       ▲
+                       │
+              Terraform (IaC Management)
+```
+
+## 📦 Project Structure
+
+```
+golden-path-demo/
+├── packages/
+│   ├── frontend/              # Cloudflare Pages (React + Vite)
+│   │   ├── src/
+│   │   ├── public/
+│   │   ├── package.json
+│   │   └── vite.config.js
+│   └── api/                   # Cloudflare Workers (Hono)
+│       ├── src/
+│       ├── package.json
+│       └── wrangler.toml
+├── .github/workflows/
+│   ├── ci.yml                 # CI: Lint, Test, Build
+│   ├── deploy.yml             # Deploy Frontend to Pages
+│   └── deploy-api.yml         # Deploy API to Workers
+├── terraform/                 # Infrastructure as Code
+│   ├── main.tf
+│   ├── variables.tf
+│   └── terraform.tfvars.example
+├── package.json               # Root workspace config
+└── README.md
 ```
 
 ## 🚀 Quick Start
 
+### Prerequisites
+
+- Node.js 20+
+- npm 9+
+
 ### Local Development
 
 ```bash
-# Install dependencies
+# Install all dependencies (root + workspaces)
 npm install
 
-# Start development server
+# Start frontend development server
 npm run dev
+# Or: npm run dev --workspace=frontend
 
-# Build for production
+# Start API development server
+npm run dev:api
+# Or: npm run dev --workspace=api
+
+# Start both frontend and API
+npm run dev:all
+
+# Build all packages
 npm run build
 
-# Preview production build
-npm run preview
+# Build specific package
+npm run build:frontend
+npm run build:api
+
+# Run tests for all packages
+npm run test
+
+# Lint all packages
+npm run lint
 ```
 
-Visit [http://localhost:5173](http://localhost:5173) to view the app.
+### Frontend
+Visit [http://localhost:5173](http://localhost:5173)
+
+### API
+Visit [http://localhost:8787/api/health](http://localhost:8787/api/health)
 
 ### Requirements
 
