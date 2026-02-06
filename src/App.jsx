@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './App.css'
 import BuildInfo from './components/BuildInfo'
 
@@ -7,8 +8,15 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1>🛤️ Golden Path Demo</h1>
-          <p className="subtitle">Modern DevOps Workflow Best Practices</p>
+          <div className="header-content">
+            <div>
+              <h1>🛤️ Golden Path Demo</h1>
+              <p className="subtitle">Modern DevOps Workflow Best Practices</p>
+            </div>
+            <Link to="/problems" className="problems-button">
+              ⚠️ Problems & Solutions
+            </Link>
+          </div>
         </div>
       </header>
 

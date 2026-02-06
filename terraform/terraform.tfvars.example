@@ -1,7 +1,9 @@
 # Copy this file to terraform.tfvars and fill in your values
 # DO NOT commit terraform.tfvars to git!
 
+# Cloudflare 凭证（必填）
 cloudflare_api_token  = "your-cloudflare-api-token-here"
 cloudflare_account_id = "your-cloudflare-account-id-here"
-github_username       = "YOUR_USERNAME"
-domain_name           = "tiga2000.com"
+
+# 域名配置（可选，已有默认值 tiga2000.com）
+domain_name = "tiga2000.com"

@@ -10,12 +10,6 @@ variable "cloudflare_account_id" {
   sensitive   = true
 }
 
-variable "github_username" {
-  description = "GitHub username or organization"
-  type        = string
-  default     = "YOUR_USERNAME"
-}
-
 variable "domain_name" {
   description = "Custom domain name"
   type        = string

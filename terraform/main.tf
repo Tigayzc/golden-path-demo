@@ -21,27 +21,14 @@ provider "cloudflare" {
 }
 
 # Cloudflare Pages Project
+# 注意：不配置 source 和 build_config，因为通过 GitHub Actions 手动部署
 resource "cloudflare_pages_project" "golden_path_demo" {
   account_id        = var.cloudflare_account_id
   name              = "golden-path-demo"
   production_branch = "main"
 
-  build_config {
-    build_command   = "npm run build"
-    destination_dir = "dist"
-  }
-
-  source {
-    type = "github"
-    config {
-      owner                         = var.github_username
-      repo_name                     = "golden-path-demo"
-      production_branch             = "main"
-      pr_comments_enabled           = true
-      deployments_enabled           = true
-      production_deployment_enabled = true
-    }
-  }
+  # 不配置 build_config - 构建在 GitHub Actions 中完成
+  # 不配置 source - 通过 cloudflare/pages-action 上传构建产物
 
   deployment_configs {
     production {
