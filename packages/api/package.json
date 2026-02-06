@@ -8,8 +8,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "echo \"No tests yet for API package\"",
     "tail": "wrangler tail"
   },
   "dependencies": {
