@@ -61,7 +61,7 @@ function App() {
           <h2>🏗️ System Architecture</h2>
           <div className="architecture-placeholder">
             <img
-              src="/images/SystemArchitecture.drawio.svg"
+              src="/images/SystemArchitecture1.drawio.svg"
               alt="System Architecture Diagram"
               className="arch-diagram"
               style={{ width: '100%', maxWidth: '700px', height: 'auto' }}
