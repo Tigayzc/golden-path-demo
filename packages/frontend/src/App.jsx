@@ -60,47 +60,13 @@ function App() {
         <section className="card">
           <h2>🏗️ System Architecture</h2>
           <div className="architecture-placeholder">
-            <svg viewBox="0 0 800 400" className="arch-diagram">
-              <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                  <polygon points="0 0, 10 3, 0 6" fill="#3b82f6" />
-                </marker>
-              </defs>
-
-              {/* GitHub */}
-              <rect x="50" y="150" width="120" height="80" rx="8" fill="#1e293b" stroke="#3b82f6" strokeWidth="2"/>
-              <text x="110" y="195" textAnchor="middle" fill="#f1f5f9" fontSize="16" fontWeight="bold">GitHub</text>
-              <text x="110" y="215" textAnchor="middle" fill="#94a3b8" fontSize="12">Source Code</text>
-
-              {/* GitHub Actions */}
-              <rect x="240" y="150" width="140" height="80" rx="8" fill="#1e293b" stroke="#10b981" strokeWidth="2"/>
-              <text x="310" y="190" textAnchor="middle" fill="#f1f5f9" fontSize="16" fontWeight="bold">GitHub Actions</text>
-              <text x="310" y="210" textAnchor="middle" fill="#94a3b8" fontSize="12">CI/CD Pipeline</text>
-
-              {/* Cloudflare Pages */}
-              <rect x="450" y="150" width="140" height="80" rx="8" fill="#1e293b" stroke="#f59e0b" strokeWidth="2"/>
-              <text x="520" y="185" textAnchor="middle" fill="#f1f5f9" fontSize="16" fontWeight="bold">Cloudflare</text>
-              <text x="520" y="205" textAnchor="middle" fill="#94a3b8" fontSize="12">Pages + CDN</text>
-              <text x="520" y="220" textAnchor="middle" fill="#94a3b8" fontSize="11">tiga2000.com</text>
-
-              {/* Terraform */}
-              <rect x="240" y="50" width="140" height="60" rx="8" fill="#1e293b" stroke="#7B42BC" strokeWidth="2"/>
-              <text x="310" y="80" textAnchor="middle" fill="#f1f5f9" fontSize="16" fontWeight="bold">Terraform</text>
-              <text x="310" y="98" textAnchor="middle" fill="#94a3b8" fontSize="12">IaC Config</text>
-
-              {/* Arrows */}
-              <line x1="170" y1="190" x2="240" y2="190" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrowhead)"/>
-              <line x1="380" y1="190" x2="450" y2="190" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrowhead)"/>
-              <line x1="310" y1="110" x2="520" y2="150" stroke="#7B42BC" strokeWidth="2" strokeDasharray="5,5" markerEnd="url(#arrowhead)"/>
-
-              {/* Labels */}
-              <text x="205" y="175" textAnchor="middle" fill="#3b82f6" fontSize="11">push</text>
-              <text x="415" y="175" textAnchor="middle" fill="#10b981" fontSize="11">deploy</text>
-              <text x="380" y="130" textAnchor="middle" fill="#7B42BC" fontSize="11">manage DNS</text>
-            </svg>
-            <p className="diagram-note">
-              Architecture Flow: Code Push → CI Build → Deploy to Cloudflare Pages → Terraform manages DNS
-            </p>
+            <img
+              src="/images/SystemArchitecture.drawio.svg"
+              alt="System Architecture Diagram"
+              className="arch-diagram"
+              style={{ width: '100%', maxWidth: '700px', height: 'auto' }}
+            />
+            
           </div>
         </section>
 

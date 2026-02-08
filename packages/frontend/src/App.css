@@ -142,12 +142,6 @@ main.container {
   display: block;
 }
 
-.diagram-note {
-  text-align: center;
-  color: var(--text-muted);
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
 
 .health-endpoint {
   margin-top: 1rem;
