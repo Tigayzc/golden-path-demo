@@ -53,12 +53,18 @@ jobs:
           echo "**Deployment Info:**" >> $GITHUB_STEP_SUMMARY
           echo "- 🔖 Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- 🌿 Branch: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "- 🌐 API URL: https://tiga2000.com/api/" >> $GITHUB_STEP_SUMMARY
-          echo "- 💚 Health Check: https://tiga2000.com/api/health" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 API URL: https://api.tiga2000.com/" >> $GITHUB_STEP_SUMMARY
+          echo "- 💚 Health Check: https://api.tiga2000.com/health" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Problems Endpoint: https://api.tiga2000.com/problems" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next Steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Configure Custom Domain in Cloudflare Dashboard" >> $GITHUB_STEP_SUMMARY
+          echo "2. Workers & Pages → golden-path-demo-api → Custom Domains" >> $GITHUB_STEP_SUMMARY
+          echo "3. Add: api.tiga2000.com" >> $GITHUB_STEP_SUMMARY
 
       - name: 🩺 Health Check
         if: success()
         run: |
           echo "Waiting for deployment to propagate..."
           sleep 10
-          curl -f https://tiga2000.com/api/health || echo "Health check failed (API may not be live yet)"
+          curl -f https://api.tiga2000.com/health || echo "Health check failed (Custom Domain may not be configured yet)"

@@ -15,8 +15,8 @@ function Problems() {
 
         // 根据环境使用不同的 API URL
         const apiUrl = import.meta.env.PROD
-          ? 'https://tiga2000.com/api/problems'
-          : 'http://localhost:8787/api/problems'
+          ? 'https://api.tiga2000.com/problems'
+          : 'http://api.localhost:8787/problems'
 
         const response = await fetch(apiUrl)
 
