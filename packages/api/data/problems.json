@@ -16,5 +16,14 @@
     "description": "The deploy workflow triggered by `workflow_run` could not find the build artifact uploaded by the CI workflow, even though the artifact existed.",
     "solution": "Used `actions/download-artifact@v4` with the correct `run-id` from `github.event.workflow_run.id` and explicitly provided `github-token` to grant cross-workflow access permissions.",
     "status": "resolved"
+  },
+  {
+    "id": 3,
+    "title": "Cloudflare worker url domain config",
+    "date": "2026-02-08",
+    "category": "Cloudflare",
+    "description": "The worker is running, but can not curl",
+    "solution": "Go to worker and add Custom Domain. Don't add DNS or add Route. Custom Domain = DNS + TLS Certificate + Worker Binding",
+    "status": "resolved"
   }
 ]
