@@ -84,22 +84,26 @@ resource "cloudflare_zone_settings_override" "tiga2000_com_settings" {
   }
 }
 
-# Workers Route - 暂不通过 Terraform 管理
-# Worker 通过 GitHub Actions + wrangler 部署
-# Route 需要在 Cloudflare Dashboard 手动配置：
-#   1. 进入 Cloudflare Dashboard
-#   2. 选择域名 tiga2000.com
-#   3. Workers Routes → Add Route
-#   4. Route: tiga2000.com/api/*
-#   5. Worker: golden-path-demo-api
+# Workers Custom Domain - 使用子域名 api.tiga2000.com
+# Worker 本身通过 GitHub Actions + wrangler 部署
+# Custom Domain 和 DNS 需要配置：
+#   1. DNS CNAME 记录: api.tiga2000.com → Worker subdomain
+#   2. Worker Custom Domain 绑定（在 Cloudflare Dashboard 或通过 wrangler）
 #
-# 如果未来需要 Terraform 管理 Route，取消下面的注释：
-#
-# resource "cloudflare_workers_route" "api_route" {
-#   zone_id     = data.cloudflare_zone.tiga2000_com.id
-#   pattern     = "tiga2000.com/api/*"
-#   script_name = "golden-path-demo-api"
-# }
+# DNS 配置由下面的 cloudflare_record 资源管理
+# Custom Domain 绑定需要在部署后手动配置，或使用 wrangler.toml 的 routes
+
+# DNS Record for API subdomain
+# 注意：Worker Custom Domain 会自动生成一个 workers.dev 子域名
+# 需要先部署 Worker，然后在 Dashboard 绑定 Custom Domain
+resource "cloudflare_record" "api" {
+  zone_id = data.cloudflare_zone.tiga2000_com.id
+  name    = "api"
+  value   = "golden-path-demo-api.tigayzc.workers.dev"  # 替换为你的 Worker subdomain
+  type    = "CNAME"
+  proxied = true
+  comment = "Managed by Terraform - API subdomain for Workers"
+}
 
 # Outputs
 output "pages_subdomain" {
@@ -118,6 +122,11 @@ output "deployment_url" {
 }
 
 output "api_url" {
-  value       = "https://${cloudflare_pages_domain.tiga2000_com.domain}/api"
+  value       = "https://api.${cloudflare_pages_domain.tiga2000_com.domain}"
   description = "The API endpoint URL"
+}
+
+output "api_health_check" {
+  value       = "https://api.${cloudflare_pages_domain.tiga2000_com.domain}/health"
+  description = "The API health check URL"
 }

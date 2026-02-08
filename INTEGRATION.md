@@ -40,38 +40,44 @@
 ### 1. 本地开发环境
 
 - **Frontend**: `http://localhost:5173`
-- **API**: `http://localhost:8787`
+- **API**: `http://api.localhost:8787`
 - **Data Source**: `packages/api/data/problems.json`
 
 ```javascript
 // Frontend 发起请求
-const apiUrl = 'http://localhost:8787/api/problems'
+const apiUrl = 'http://api.localhost:8787/problems'
 const response = await fetch(apiUrl)
 const { data } = await response.json()
 ```
 
+> **注意**: `api.localhost` 会自动解析到 `127.0.0.1`，无需配置 hosts 文件。这样本地开发环境也使用子域名，与生产环境保持一致。
+
 ### 2. 生产环境
 
 - **Frontend**: `https://tiga2000.com`
-- **API**: `https://tiga2000.com/api/*`
+- **API**: `https://api.tiga2000.com`
 - **Data Source**: Workers 内嵌的 JSON 数据
 
 ```javascript
 // Frontend 发起请求
-const apiUrl = 'https://tiga2000.com/api/problems'
+const apiUrl = 'https://api.tiga2000.com/problems'
 const response = await fetch(apiUrl)
 const { data } = await response.json()
 ```
 
 ## API 端点
 
-### GET /api/problems
+### GET /problems
 
 **描述**: 获取所有问题列表
 
 **请求**:
 ```bash
-curl http://localhost:8787/api/problems
+# 本地开发
+curl http://api.localhost:8787/problems
+
+# 生产环境
+curl https://api.tiga2000.com/problems
 ```
 
 **响应**:
@@ -93,13 +99,17 @@ curl http://localhost:8787/api/problems
 }
 ```
 
-### GET /api/health
+### GET /health
 
 **描述**: 健康检查
 
 **请求**:
 ```bash
-curl http://localhost:8787/api/health
+# 本地开发
+curl http://api.localhost:8787/health
+
+# 生产环境
+curl https://api.tiga2000.com/health
 ```
 
 **响应**:
@@ -108,7 +118,7 @@ curl http://localhost:8787/api/health
   "status": "healthy",
   "timestamp": "2026-02-06T12:00:00.000Z",
   "version": "1.0.0",
-  "environment": "development"
+  "environment": "production"
 }
 ```
 
@@ -119,8 +129,8 @@ curl http://localhost:8787/api/health
 ```javascript
 // 环境检测
 const apiUrl = import.meta.env.PROD
-  ? 'https://tiga2000.com/api/problems'
-  : 'http://localhost:8787/api/problems'
+  ? 'https://api.tiga2000.com/problems'
+  : 'http://localhost:8787/problems'
 
 // 获取数据
 const response = await fetch(apiUrl)
@@ -191,8 +201,8 @@ npm run dev
 
 ```bash
 # 测试 API
-curl http://localhost:8787/api/health
-curl http://localhost:8787/api/problems
+curl http://api.localhost:8787/health
+curl http://api.localhost:8787/problems
 
 # 访问前端
 open http://localhost:5173/problems

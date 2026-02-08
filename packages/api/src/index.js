@@ -10,7 +10,10 @@ app.use('*', logger())
 app.use('*', cors({
   origin: (origin) => {
     // 允许生产环境和本地开发的所有端口
-    const allowed = ['https://tiga2000.com']
+    const allowed = [
+      'https://tiga2000.com',
+      'https://api.tiga2000.com'
+    ]
     if (allowed.includes(origin)) {
       return origin
     }
@@ -28,7 +31,7 @@ app.use('*', cors({
 }))
 
 // Health check endpoint
-app.get('/api/health', (c) => {
+app.get('/health', (c) => {
   return c.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -38,7 +41,7 @@ app.get('/api/health', (c) => {
 })
 
 // Get build info
-app.get('/api/build-info', (c) => {
+app.get('/build-info', (c) => {
   return c.json({
     version: '1.0.0',
     apiVersion: c.env.API_VERSION || '1.0.0',
@@ -48,7 +51,7 @@ app.get('/api/build-info', (c) => {
 })
 
 // Get problems data from JSON file
-app.get('/api/problems', async (c) => {
+app.get('/problems', async (c) => {
   try {
     // problemsData 已经在文件顶部导入
     return c.json({
@@ -66,7 +69,7 @@ app.get('/api/problems', async (c) => {
 })
 
 // Create a new problem (example POST endpoint)
-app.post('/api/problems', async (c) => {
+app.post('/problems', async (c) => {
   try {
     const body = await c.req.json()
 
