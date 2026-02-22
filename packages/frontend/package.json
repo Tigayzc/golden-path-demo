@@ -12,6 +12,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives",
     "lint:fix": "eslint . --ext js,jsx --fix",
     "test": "vitest run",
+    "test:ci": "vitest run --coverage", 
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage"
