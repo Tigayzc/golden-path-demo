@@ -55,7 +55,7 @@ jobs:
         continue-on-error: false
 
       - name: 🧪 Run tests (all workspaces)
-        run: npm run test
+        run: npm run test:ci --workspaces --if-present
         continue-on-error: false
         env:
           CI: true
