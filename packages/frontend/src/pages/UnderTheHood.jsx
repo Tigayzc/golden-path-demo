@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './App.css'
-import BuildInfo from './components/BuildInfo'
+import './UnderTheHood.css'
+import BuildInfo from '../components/BuildInfo'
 
-function App() {
+function UnderTheHood() {
   return (
     <div className="app">
       <header className="header">
         <div className="container">
           <div className="header-content">
             <div>
-              <h1>🛤️ Golden Path Demo</h1>
-              <p className="subtitle">Modern DevOps Workflow Best Practices</p>
+              <Link to="/" className="home-link">← Home</Link>
+              <h1>🛠️ Under the Hood</h1>
+              <p className="subtitle">How this site is built · Golden Path: Modern DevOps Workflow Best Practices</p>
             </div>
-            <Link to="/problems" className="problems-button">
+            <Link to="/under-the-hood/problems" className="problems-button">
               ⚠️ Problems & Solutions
             </Link>
           </div>
@@ -169,4 +170,4 @@ function App() {
   )
 }
 
-export default App
+export default UnderTheHood

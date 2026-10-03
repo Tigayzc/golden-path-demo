@@ -53,7 +53,8 @@ A complete monorepo example of modern DevOps workflow best practices, demonstrat
     └────────────┘        └─────────────┘
          │                       │
          ├── / (Home)            ├── /health
-         ├── /problems           ├── /problems
+         ├── /under-the-hood     ├── /problems
+         ├── /under-the-hood/problems
          └── /build-info         └── /build-info
                  │
                  ▼
@@ -263,9 +264,10 @@ golden-path-demo/
 ├── public/
 │   └── health                  # Health check endpoint
 ├── src/
-│   ├── App.jsx                 # Main application component
-│   ├── App.css                 # Styles
-│   ├── main.jsx                # Application entry point
+│   ├── pages/Home.jsx          # Personal homepage (/)
+│   ├── pages/UnderTheHood.jsx  # How this site is built (/under-the-hood)
+│   ├── pages/Problems.jsx      # Problems & Solutions (/under-the-hood/problems)
+│   ├── main.jsx                # Application entry point & routes
 │   └── index.css               # Global styles
 ├── terraform/
 │   ├── main.tf                 # Terraform main configuration

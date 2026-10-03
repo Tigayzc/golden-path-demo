@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import App from './App'
+import UnderTheHood from './UnderTheHood'
 
 // Helper function to render with router
 const renderWithRouter = (component) => {
@@ -12,42 +12,47 @@ const renderWithRouter = (component) => {
   )
 }
 
-describe('App', () => {
+describe('UnderTheHood', () => {
   it('renders main heading', () => {
-    renderWithRouter(<App />)
-    expect(screen.getByText(/Golden Path Demo/i)).toBeInTheDocument()
+    renderWithRouter(<UnderTheHood />)
+    expect(screen.getByText(/Under the Hood/i)).toBeInTheDocument()
+  })
+
+  it('renders link back to home', () => {
+    renderWithRouter(<UnderTheHood />)
+    expect(screen.getByText(/← Home/).closest('a')).toHaveAttribute('href', '/')
   })
 
   it('renders subtitle', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     expect(screen.getByText(/Modern DevOps Workflow Best Practices/i)).toBeInTheDocument()
   })
 
   it('renders project overview section', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     expect(screen.getByText(/Project Overview/i)).toBeInTheDocument()
   })
 
   it('renders tech stack section', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     expect(screen.getByText(/Tech Stack/i)).toBeInTheDocument()
   })
 
   it('renders build info component', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     // BuildInfo 组件默认渲染为折叠状态
     expect(document.querySelector('.build-info-container')).toBeInTheDocument()
   })
 
   it('renders footer with links', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     expect(screen.getByText(/Made with ❤️/i)).toBeInTheDocument()
   })
 
   it('renders problems button link', () => {
-    renderWithRouter(<App />)
+    renderWithRouter(<UnderTheHood />)
     const problemsLink = screen.getByText(/Problems & Solutions/i)
     expect(problemsLink).toBeInTheDocument()
-    expect(problemsLink.closest('a')).toHaveAttribute('href', '/problems')
+    expect(problemsLink.closest('a')).toHaveAttribute('href', '/under-the-hood/problems')
   })
 })

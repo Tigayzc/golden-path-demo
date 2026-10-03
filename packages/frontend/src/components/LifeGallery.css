@@ -1,0 +1,116 @@
+.life-gallery {
+  --card-w: clamp(260px, 62vw, 760px);
+  margin-top: 4rem;
+}
+
+.life-gallery-track {
+  display: flex;
+  gap: clamp(12px, 2vw, 28px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* 首尾卡片也能停在正中间 */
+  padding: 2rem calc(50vw - var(--card-w) / 2) 4.5rem;
+  scrollbar-width: none;
+  cursor: grab;
+  outline: none;
+}
+
+.life-gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.life-gallery-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.life-gallery-track:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+.life-gallery-card {
+  flex: 0 0 var(--card-w);
+  aspect-ratio: 3 / 2;
+  scroll-snap-align: center;
+  border-radius: 24px;
+  transform-origin: center center;
+  transition: opacity 0.2s linear;
+  will-change: transform;
+  /* 画廊地面的倒影 */
+  -webkit-box-reflect: below 10px linear-gradient(transparent 80%, rgba(0, 0, 0, 0.14));
+}
+
+.life-gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.life-gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.life-gallery-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(66, 66, 69, 0.72);
+  color: #f5f5f7;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.life-gallery-arrow:hover:not(:disabled) {
+  background: rgba(98, 98, 102, 0.85);
+}
+
+.life-gallery-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.life-gallery-dots {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 980px;
+  background: rgba(66, 66, 69, 0.55);
+}
+
+.life-gallery-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 980px;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+.life-gallery-dots button.is-active {
+  width: 28px;
+  background: #fff;
+}
+
+@media (max-width: 734px) {
+  .life-gallery {
+    --card-w: 80vw;
+    margin-top: 2.5rem;
+  }
+
+  .life-gallery-card,
+  .life-gallery-card img {
+    border-radius: 16px;
+  }
+}

@@ -5,7 +5,7 @@
 }
 
 .header {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(180deg, #161617 0%, #000 100%);
   padding: 3rem 0;
   border-bottom: 2px solid var(--primary);
 }
@@ -263,4 +263,16 @@ main.container {
   .tech-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
+}
+
+.home-link {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.home-link:hover {
+  color: var(--primary);
 }

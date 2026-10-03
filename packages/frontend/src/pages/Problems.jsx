@@ -49,7 +49,7 @@ function Problems() {
       <div className="problems-page">
         <header className="problems-header">
           <div className="container">
-            <Link to="/" className="back-link">← Back to Home</Link>
+            <Link to="/under-the-hood" className="back-link">← Back to Under the Hood</Link>
             <h1>Problems While Developing</h1>
             <p className="problems-subtitle">Loading problems...</p>
           </div>
@@ -68,7 +68,7 @@ function Problems() {
       <div className="problems-page">
         <header className="problems-header">
           <div className="container">
-            <Link to="/" className="back-link">← Back to Home</Link>
+            <Link to="/under-the-hood" className="back-link">← Back to Under the Hood</Link>
             <h1>Problems While Developing</h1>
             <p className="problems-subtitle">Failed to load problems</p>
           </div>
@@ -89,7 +89,7 @@ function Problems() {
     <div className="problems-page">
       <header className="problems-header">
         <div className="container">
-          <Link to="/" className="back-link">← Back to Home</Link>
+          <Link to="/under-the-hood" className="back-link">← Back to Under the Hood</Link>
           <h1>Problems While Developing</h1>
           <p className="problems-subtitle">
             A collection of issues encountered during development and their solutions
