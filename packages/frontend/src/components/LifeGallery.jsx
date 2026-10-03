@@ -118,8 +118,6 @@ function LifeGallery({ photos }) {
         ))}
       </div>
 
-      <p className="life-gallery-caption" aria-live="polite">{photos[active]?.caption}</p>
-
       <div className="life-gallery-controls">
         <button type="button" className="life-gallery-arrow" onClick={() => go(-1)} disabled={active === 0} aria-label="Previous photo">
           ‹

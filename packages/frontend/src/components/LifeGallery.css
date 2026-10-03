@@ -49,14 +49,6 @@
   pointer-events: none;
 }
 
-.life-gallery-caption {
-  margin-top: 0;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 1rem;
-  min-height: 1.5em;
-}
-
 .life-gallery-controls {
   display: flex;
   justify-content: center;

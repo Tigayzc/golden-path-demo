@@ -60,12 +60,12 @@ export const life = {
   headline: 'Life beyond\nthe terminal.',
   body: 'An ENTJ who plans the route — then walks it. Away from the keyboard I play sport, hike and camp under the stars, chase light with a camera, and cook things that take all afternoon.',
   photos: [
-    { src: '/images/life/tent.jpg', alt: 'Arms wide open in front of a glowing tent under the stars', caption: 'Camping under the stars' },
-    { src: '/images/life/ridge.jpg', alt: 'Hiker with a backpack looking over forested ridges', caption: 'On the ridge line' },
-    { src: '/images/life/coast.jpg', alt: 'Waves rolling onto a sunlit sand bar', caption: 'Coastline, golden hour' },
-    { src: '/images/life/wellington.jpg', alt: 'Home-made Beef Wellington with jus and rocket', caption: 'Beef Wellington, made at home' },
-    { src: '/images/life/boardwalk.jpg', alt: 'Boardwalk through a grassy wetland below a forested hill', caption: 'Boardwalk through the wetland' },
-    { src: '/images/life/lake.jpg', alt: 'Lakeside house reflected in still water with misty mountains behind', caption: 'Still water, misty hills' },
+    { src: '/images/life/tent.jpg', alt: 'Arms wide open in front of a glowing tent under the stars' },
+    { src: '/images/life/ridge.jpg', alt: 'Hiker with a backpack looking over forested ridges' },
+    { src: '/images/life/coast.jpg', alt: 'Waves rolling onto a sunlit sand bar' },
+    { src: '/images/life/wellington.jpg', alt: 'Home-made Beef Wellington with jus and rocket' },
+    { src: '/images/life/boardwalk.jpg', alt: 'Boardwalk through a grassy wetland below a forested hill' },
+    { src: '/images/life/lake.jpg', alt: 'Lakeside house reflected in still water with misty mountains behind' },
   ],
 }
 
