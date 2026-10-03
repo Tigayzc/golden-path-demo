@@ -18,3 +18,12 @@ global.import = {
     }
   }
 }
+
+// jsdom 没有 IntersectionObserver，motion 的 whileInView 需要它
+class MockIntersectionObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords() { return [] }
+}
+globalThis.IntersectionObserver ??= MockIntersectionObserver
