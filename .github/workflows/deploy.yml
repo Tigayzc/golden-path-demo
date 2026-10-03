@@ -47,15 +47,20 @@ jobs:
           ls -lh dist
           test -f dist/index.html
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: golden-path-demo
-          directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          node-version: '20'
+
+      # cloudflare/pages-action 已被 Cloudflare 删除，改用 wrangler（与 deploy-api.yml 一致）
+      - name: Publish to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euxo pipefail
+          npx --yes wrangler --version
+          npx --yes wrangler pages deploy dist --project-name=golden-path-demo --branch=main
 
       - name: Health Check
         if: github.event.workflow_run.head_branch == 'main'
