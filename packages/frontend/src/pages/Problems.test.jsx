@@ -38,9 +38,9 @@ describe('Problems', () => {
   it('renders back to home link', async () => {
     renderWithRouter(<Problems />)
     await waitFor(() => {
-      const backLink = screen.getByText(/Back to Home/i)
+      const backLink = screen.getByText(/Back to Under the Hood/i)
       expect(backLink).toBeInTheDocument()
-      expect(backLink.closest('a')).toHaveAttribute('href', '/')
+      expect(backLink.closest('a')).toHaveAttribute('href', '/under-the-hood')
     })
   })
 
