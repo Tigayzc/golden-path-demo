@@ -4,25 +4,27 @@
 export const profile = {
   name: 'TIGA',
   eyebrow: "Hi, I'm Tiga",
-  tagline: 'Learn from the past. Build what is next.',
-  intro: 'Engineer, builder, and student of history.',
+  tagline: 'I take AI from idea to production.',
+  intro: 'AI Application Engineer based in Melbourne.',
   portrait: null, // 例如 '/images/portrait.jpg'
 }
 
 export const about = {
   eyebrow: 'About',
-  headline: 'Engineer by trade.\nHistorian at heart.',
+  headline: 'Builder on the ground.\nEyes on the sky.',
   body: [
-    'Placeholder — a short introduction about who you are, what you do, and what drives you.',
-    'Placeholder — a second line about your background, your current focus, or where you are based.',
+    'AI Application Engineer at AskJoreal, embedding with clients to design and ship custom AI workflows end to end.',
+    'Master of IT, UNSW. Based in Melbourne.',
   ],
+  image: '/images/about-night.jpg',
 }
 
+// 来自简历的真实数据
 export const stats = [
-  { value: 8, suffix: '+', label: 'Years building software' },
-  { value: 30, suffix: '+', label: 'Projects shipped' },
-  { value: 3, suffix: '', label: 'Countries lived in' },
-  { value: 130, suffix: '', label: 'Chapters of Shiji read' },
+  { value: 8, suffix: ' hrs', label: 'Saved per week for a real estate client' },
+  { value: 90, suffix: '%', label: 'Less time spent locating materials' },
+  { value: 3, suffix: '×', label: 'Faster document upload workflow' },
+  { value: 6, suffix: '', label: 'Person team led as Scrum Master' },
 ]
 
 export const work = [
@@ -49,6 +51,38 @@ export const work = [
     image: null,
     gradient: ['#ff9f0a', '#ffd60a'],
     link: null,
+  },
+]
+
+// Know me more —— 换成你自己的照片后效果最好
+export const life = [
+  {
+    eyebrow: 'Photography',
+    title: 'Chasing light after dark.',
+    description: 'Placeholder — a line about what you love to shoot.',
+    image: null,
+    gradient: ['#64d2ff', '#0a84ff'],
+  },
+  {
+    eyebrow: 'Cooking',
+    title: 'Placeholder headline about cooking.',
+    description: 'Placeholder — your signature dish, or why you cook.',
+    image: null,
+    gradient: ['#ff9f0a', '#ff453a'],
+  },
+  {
+    eyebrow: 'Outdoors',
+    title: 'Placeholder headline about the outdoors.',
+    description: 'Placeholder — hikes, coastlines, camping trips.',
+    image: null,
+    gradient: ['#30d158', '#0a84ff'],
+  },
+  {
+    eyebrow: 'Sport',
+    title: 'Placeholder headline about sport.',
+    description: 'Placeholder — the sports you play and what they teach you.',
+    image: null,
+    gradient: ['#bf5af2', '#ff375f'],
   },
 ]
 

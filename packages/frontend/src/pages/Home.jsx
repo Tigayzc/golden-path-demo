@@ -10,7 +10,7 @@ import {
   useScroll,
   useTransform,
 } from 'motion/react'
-import { about, contact, profile, shiji, stats, work } from '../content/profile'
+import { about, contact, life, profile, shiji, stats, work } from '../content/profile'
 import './Home.css'
 
 const ease = [0.25, 0.1, 0.25, 1]
@@ -43,6 +43,7 @@ function Nav() {
         <div className="home-nav-links">
           <a href="#about">About</a>
           <a href="#work">Work</a>
+          <a href="#life">Life</a>
           <a href="#shiji">以史为鉴</a>
           <Link to="/under-the-hood" className="home-nav-cta">Under the Hood</Link>
         </div>
@@ -98,20 +99,37 @@ function Hero() {
 }
 
 function About() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
+
   return (
-    <section id="about" className="section section-center">
-      <Reveal as="p" className="eyebrow">{about.eyebrow}</Reveal>
-      <h2 className="display">
-        {about.headline.split('\n').map((line, i) => (
-          <Reveal key={line} as="span" className="display-line" delay={0.15 * i}>
-            {line}
-          </Reveal>
-        ))}
-      </h2>
-      <div className="section-body">
-        {about.body.map((p, i) => (
-          <Reveal key={p} as="p" delay={0.3 + 0.1 * i}>{p}</Reveal>
-        ))}
+    <section id="about" ref={ref} className="about">
+      <motion.img
+        src={about.image}
+        alt=""
+        aria-hidden="true"
+        className="about-bg"
+        style={{ y }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.6, ease }}
+      />
+      <div className="about-copy">
+        <Reveal as="p" className="eyebrow">{about.eyebrow}</Reveal>
+        <h2 className="display-sm">
+          {about.headline.split('\n').map((line, i) => (
+            <Reveal key={line} as="span" className="display-line" delay={0.15 * i}>
+              {line}
+            </Reveal>
+          ))}
+        </h2>
+        <div className="about-body">
+          {about.body.map((p, i) => (
+            <Reveal key={p} as="p" delay={0.3 + 0.1 * i}>{p}</Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -148,7 +166,7 @@ function Stats() {
   )
 }
 
-function WorkVisual({ item }) {
+function ShowcaseVisual({ item }) {
   if (item.image) {
     return <img src={item.image} alt={item.title} className="work-image" />
   }
@@ -162,18 +180,18 @@ function WorkVisual({ item }) {
   )
 }
 
-// 钉住整屏，随滚动切换作品
-function Work() {
+// 钉住整屏，随滚动逐个切换
+function PinnedShowcase({ id, items }) {
   const ref = useRef(null)
   const [active, setActive] = useState(0)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    setActive(Math.min(work.length - 1, Math.floor(p * work.length)))
+    setActive(Math.min(items.length - 1, Math.floor(p * items.length)))
   })
-  const item = work[active]
+  const item = items[active]
 
   return (
-    <section id="work" ref={ref} className="work" style={{ height: `${work.length * 100}vh` }}>
+    <section id={id} ref={ref} className="work" style={{ height: `${items.length * 100}vh` }}>
       <div className="work-sticky">
         <AnimatePresence mode="wait">
           <motion.div
@@ -184,7 +202,7 @@ function Work() {
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 0.6, ease }}
           >
-            <WorkVisual item={item} />
+            <ShowcaseVisual item={item} />
             <div className="work-copy">
               <p className="eyebrow">{item.eyebrow}</p>
               <h3 className="display-sm">{item.title}</h3>
@@ -198,7 +216,7 @@ function Work() {
           </motion.div>
         </AnimatePresence>
         <div className="work-dots" aria-hidden="true">
-          {work.map((w, i) => (
+          {items.map((w, i) => (
             <span key={w.title} className={i === active ? 'is-active' : ''} />
           ))}
         </div>
@@ -207,16 +225,31 @@ function Work() {
   )
 }
 
+function KnowMe() {
+  return (
+    <>
+      <section id="life" className="section section-center know-me-intro">
+        <Reveal as="p" className="eyebrow">Know me more</Reveal>
+        <h2 className="display">
+          <Reveal as="span" className="display-line">Life beyond</Reveal>
+          <Reveal as="span" className="display-line" delay={0.15}>the terminal.</Reveal>
+        </h2>
+      </section>
+      <PinnedShowcase id="life-showcase" items={life} />
+    </>
+  )
+}
+
 function Shiji() {
   return (
     <section id="shiji" className="section shiji">
-      {/* 由容器触发：完全裁剪的子元素不会被判定为进入视口 */}
+      {/* 由容器触发（完全裁剪的子元素不会被判定为进入视口）；once: false 让每次进入都重播 */}
       <motion.div
         className="shiji-scroll"
         aria-label={shiji.quote.join('，')}
         initial="hidden"
         whileInView="shown"
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: false, amount: 0.5 }}
         transition={{ staggerChildren: 0.35 }}
       >
         {shiji.quote.map((col) => (
@@ -300,7 +333,8 @@ function Home() {
         <Hero />
         <About />
         <Stats />
-        <Work />
+        <PinnedShowcase id="work" items={work} />
+        <KnowMe />
         <Shiji />
         <UnderTheHoodTeaser />
         <Contact />

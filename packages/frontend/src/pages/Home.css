@@ -235,6 +235,62 @@ html {
   line-height: 1.05;
 }
 
+/* ---------- About (photo blended into background) ---------- */
+.about {
+  position: relative;
+  min-height: 150vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* 与照片夜空同色的微弱光晕，让照片融进黑色背景 */
+  background: radial-gradient(40% 50% at 68% 50%, rgba(28, 36, 72, 0.45), transparent 70%);
+}
+
+.about-bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  right: max(0px, calc(50% - 600px));
+  aspect-ratio: 835 / 2000;
+  object-fit: cover;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 38%, #000 68%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 38%, #000 68%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.about-copy {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+.about-copy > * {
+  max-width: 480px;
+}
+
+.about-body {
+  margin-top: 1.75rem;
+  color: var(--text-muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.about-body p + p {
+  margin-top: 0.6rem;
+}
+
+/* ---------- Know me more ---------- */
+.know-me-intro {
+  padding-bottom: 0;
+}
+
 /* ---------- Stats ---------- */
 .stats {
   display: grid;
@@ -407,6 +463,34 @@ html {
   .work-image {
     max-width: 320px;
     margin: 0 auto;
+  }
+
+  .about {
+    min-height: 120vh;
+  }
+
+  /* transform 由视差动画占用，这里用 margin 居中 */
+  .about-bg {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    filter: brightness(0.75); /* opacity 由渐显动画占用 */
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+
+  .about-copy {
+    text-align: center;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+  }
+
+  .about-copy > * {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .shiji {
