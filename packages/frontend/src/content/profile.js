@@ -13,7 +13,7 @@ export const about = {
   eyebrow: 'About',
   headline: 'Builder on the ground.\nEyes on the sky.',
   body: [
-    'AI Application Engineer at AskJoreal, embedding with clients to design and ship custom AI workflows end to end.',
+    'AI Application Engineer who works directly with clients to design and ship custom AI workflows end to end.',
     'Master of IT, UNSW. Based in Melbourne.',
   ],
   image: '/images/about-night.jpg',
