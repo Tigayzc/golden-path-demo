@@ -20,7 +20,15 @@ describe('Home', () => {
     expect(document.getElementById('life')).toBeInTheDocument()
     expect(document.getElementById('shiji')).toBeInTheDocument()
     expect(screen.getByText(work[0].title)).toBeInTheDocument()
-    expect(screen.getByText(life[0].title)).toBeInTheDocument()
+    expect(screen.getAllByRole('img', { name: life.photos[0].alt }).length).toBe(1)
+  })
+
+  it('renders every life photo in the gallery', () => {
+    renderHome()
+    life.photos.forEach((photo) => {
+      expect(screen.getByRole('img', { name: photo.alt })).toHaveAttribute('src', photo.src)
+    })
+    expect(screen.getByRole('button', { name: 'Previous photo' })).toBeDisabled()
   })
 
   it('links to the Under the Hood section', () => {

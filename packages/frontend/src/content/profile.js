@@ -54,37 +54,20 @@ export const work = [
   },
 ]
 
-// Know me more —— 换成你自己的照片后效果最好
-export const life = [
-  {
-    eyebrow: 'Photography',
-    title: 'Chasing light after dark.',
-    description: 'Placeholder — a line about what you love to shoot.',
-    image: null,
-    gradient: ['#64d2ff', '#0a84ff'],
-  },
-  {
-    eyebrow: 'Cooking',
-    title: 'Placeholder headline about cooking.',
-    description: 'Placeholder — your signature dish, or why you cook.',
-    image: null,
-    gradient: ['#ff9f0a', '#ff453a'],
-  },
-  {
-    eyebrow: 'Outdoors',
-    title: 'Placeholder headline about the outdoors.',
-    description: 'Placeholder — hikes, coastlines, camping trips.',
-    image: null,
-    gradient: ['#30d158', '#0a84ff'],
-  },
-  {
-    eyebrow: 'Sport',
-    title: 'Placeholder headline about sport.',
-    description: 'Placeholder — the sports you play and what they teach you.',
-    image: null,
-    gradient: ['#bf5af2', '#ff375f'],
-  },
-]
+// Know me more —— 一段总体介绍 + 可滑动的照片画廊
+export const life = {
+  eyebrow: 'Know me more',
+  headline: 'Life beyond\nthe terminal.',
+  body: 'An ENTJ who plans the route — then walks it. Away from the keyboard I play sport, hike and camp under the stars, chase light with a camera, and cook things that take all afternoon.',
+  photos: [
+    { src: '/images/life/tent.jpg', alt: 'Arms wide open in front of a glowing tent under the stars', caption: 'Camping under the stars' },
+    { src: '/images/life/ridge.jpg', alt: 'Hiker with a backpack looking over forested ridges', caption: 'On the ridge line' },
+    { src: '/images/life/coast.jpg', alt: 'Waves rolling onto a sunlit sand bar', caption: 'Coastline, golden hour' },
+    { src: '/images/life/wellington.jpg', alt: 'Home-made Beef Wellington with jus and rocket', caption: 'Beef Wellington, made at home' },
+    { src: '/images/life/boardwalk.jpg', alt: 'Boardwalk through a grassy wetland below a forested hill', caption: 'Boardwalk through the wetland' },
+    { src: '/images/life/lake.jpg', alt: 'Lakeside house reflected in still water with misty mountains behind', caption: 'Still water, misty hills' },
+  ],
+}
 
 export const shiji = {
   eyebrow: '以史为鉴 · Ask the Grand Historian',

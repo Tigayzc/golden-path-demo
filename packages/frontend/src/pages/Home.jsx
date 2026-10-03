@@ -11,6 +11,7 @@ import {
   useTransform,
 } from 'motion/react'
 import { about, contact, life, profile, shiji, stats, work } from '../content/profile'
+import LifeGallery from '../components/LifeGallery'
 import './Home.css'
 
 const ease = [0.25, 0.1, 0.25, 1]
@@ -227,16 +228,20 @@ function PinnedShowcase({ id, items }) {
 
 function KnowMe() {
   return (
-    <>
-      <section id="life" className="section section-center know-me-intro">
-        <Reveal as="p" className="eyebrow">Know me more</Reveal>
+    <section id="life" className="know-me">
+      <div className="section section-center know-me-intro">
+        <Reveal as="p" className="eyebrow">{life.eyebrow}</Reveal>
         <h2 className="display">
-          <Reveal as="span" className="display-line">Life beyond</Reveal>
-          <Reveal as="span" className="display-line" delay={0.15}>the terminal.</Reveal>
+          {life.headline.split('\n').map((line, i) => (
+            <Reveal key={line} as="span" className="display-line" delay={0.15 * i}>{line}</Reveal>
+          ))}
         </h2>
-      </section>
-      <PinnedShowcase id="life-showcase" items={life} />
-    </>
+        <Reveal as="p" className="section-body" delay={0.3}>{life.body}</Reveal>
+      </div>
+      <Reveal delay={0.2}>
+        <LifeGallery photos={life.photos} />
+      </Reveal>
+    </section>
   )
 }
 

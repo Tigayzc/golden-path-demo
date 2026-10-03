@@ -287,6 +287,10 @@ html {
 }
 
 /* ---------- Know me more ---------- */
+.know-me {
+  padding-bottom: clamp(4rem, 10vh, 8rem);
+}
+
 .know-me-intro {
   padding-bottom: 0;
 }
