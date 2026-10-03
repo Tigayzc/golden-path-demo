@@ -236,7 +236,8 @@ jobs:
           test -f packages/frontend/coverage/lcov.info && echo "lcov.info found" || echo "lcov.info NOT found"
 
       - name: 🔍 SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+        # 旧的 sonarcloud-github-action 已弃用且自带 Java 17，SonarCloud 现要求 Java 21+
+        uses: SonarSource/sonarqube-scan-action@v8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_GOLDENPATHDEMO }}
