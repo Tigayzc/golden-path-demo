@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Home from './Home'
-import { life, profile, work } from '../content/profile'
+import { life, profile } from '../content/profile'
 
 const renderHome = () => render(<MemoryRouter><Home /></MemoryRouter>)
 
@@ -13,13 +13,12 @@ describe('Home', () => {
     expect(screen.getByText(profile.tagline)).toBeInTheDocument()
   })
 
-  it('renders the about, work, life, and shiji sections', () => {
+  it('renders the about and life sections without the removed ones', () => {
     renderHome()
     expect(document.getElementById('about')).toBeInTheDocument()
-    expect(document.getElementById('work')).toBeInTheDocument()
     expect(document.getElementById('life')).toBeInTheDocument()
-    expect(document.getElementById('shiji')).toBeInTheDocument()
-    expect(screen.getByText(work[0].title)).toBeInTheDocument()
+    expect(document.getElementById('work')).not.toBeInTheDocument()
+    expect(document.getElementById('shiji')).not.toBeInTheDocument()
     expect(screen.getAllByRole('img', { name: life.photos[0].alt }).length).toBe(1)
   })
 
