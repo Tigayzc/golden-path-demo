@@ -217,7 +217,12 @@ function Contact() {
       </h2>
       <Reveal className="contact-links" delay={0.2}>
         {contact.links.map((l) => (
-          <a key={l.label} href={l.href} className="pill-link" target="_blank" rel="noopener noreferrer">
+          <a
+            key={l.label}
+            href={l.href}
+            className="pill-link"
+            {...(l.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+          >
             {l.label} ›
           </a>
         ))}
