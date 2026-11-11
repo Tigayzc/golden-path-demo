@@ -1,5 +1,4 @@
 .home {
-  --gold: #d6b37a;
   background: #000;
   color: var(--text);
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', sans-serif;
@@ -73,10 +72,6 @@ html {
   font-size: clamp(1rem, 1.6vw, 1.3rem);
   font-weight: 600;
   margin-bottom: 0.75rem;
-}
-
-.eyebrow-gold {
-  color: var(--gold);
 }
 
 .display {
@@ -317,109 +312,6 @@ html {
   font-size: 0.95rem;
 }
 
-/* ---------- Work (pinned) ---------- */
-.work {
-  position: relative;
-}
-
-.work-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.work-slide {
-  width: 100%;
-  max-width: 1024px;
-  padding: 0 22px;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  align-items: center;
-  gap: 3rem;
-}
-
-.work-image {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 28px;
-}
-
-.work-placeholder {
-  filter: blur(8px) saturate(1.2);
-  opacity: 0.85;
-}
-
-.work-desc {
-  margin-top: 1.25rem;
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-}
-
-.work-dots {
-  position: absolute;
-  bottom: 6vh;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 980px;
-  background: rgba(66, 66, 69, 0.55);
-  backdrop-filter: blur(12px);
-}
-
-.work-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 980px;
-  background: rgba(255, 255, 255, 0.4);
-  transition: width 0.4s ease, background 0.4s ease;
-}
-
-.work-dots span.is-active {
-  width: 36px;
-  background: #fff;
-}
-
-/* ---------- Shiji ---------- */
-.shiji {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: clamp(2rem, 8vw, 7rem);
-}
-
-.shiji-scroll {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 1.75rem;
-  padding: 2.5rem 2rem;
-  border-left: 1px solid rgba(214, 179, 122, 0.25);
-  border-right: 1px solid rgba(214, 179, 122, 0.25);
-  background:
-    repeating-linear-gradient(90deg, transparent 0 62px, rgba(214, 179, 122, 0.07) 62px 63px),
-    radial-gradient(ellipse at center, rgba(214, 179, 122, 0.08), transparent 70%);
-}
-
-.shiji-col {
-  writing-mode: vertical-rl;
-  font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  letter-spacing: 0.35em;
-  color: var(--gold);
-}
-
-.shiji-copy .section-body {
-  margin-left: 0;
-}
-
 /* ---------- Under the Hood teaser ---------- */
 .uth-diagram {
   display: block;
@@ -458,17 +350,6 @@ html {
     row-gap: 3rem;
   }
 
-  .work-slide {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    text-align: center;
-  }
-
-  .work-image {
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
   .about {
     min-height: 120vh;
   }
@@ -495,16 +376,6 @@ html {
   .about-copy > * {
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .shiji {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .shiji-copy .section-body {
-    margin-left: auto;
   }
 }
 

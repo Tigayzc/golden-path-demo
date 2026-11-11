@@ -27,33 +27,6 @@ export const stats = [
   { value: 6, suffix: '', label: 'Person team led as Scrum Master' },
 ]
 
-export const work = [
-  {
-    eyebrow: 'Project 01',
-    title: 'Placeholder project one.',
-    description: 'One sentence about what it is and why it matters.',
-    image: null,
-    gradient: ['#2997ff', '#5e5ce6'],
-    link: null,
-  },
-  {
-    eyebrow: 'Project 02',
-    title: 'Placeholder project two.',
-    description: 'One sentence about what it is and why it matters.',
-    image: null,
-    gradient: ['#bf5af2', '#ff375f'],
-    link: null,
-  },
-  {
-    eyebrow: 'Project 03',
-    title: 'Placeholder project three.',
-    description: 'One sentence about what it is and why it matters.',
-    image: null,
-    gradient: ['#ff9f0a', '#ffd60a'],
-    link: null,
-  },
-]
-
 // Know me more —— 一段总体介绍 + 可滑动的照片画廊
 export const life = {
   eyebrow: 'Know me more',
@@ -67,14 +40,6 @@ export const life = {
     { src: '/images/life/boardwalk.jpg', alt: 'Boardwalk through a grassy wetland below a forested hill' },
     { src: '/images/life/lake.jpg', alt: 'Lakeside house reflected in still water with misty mountains behind' },
   ],
-}
-
-export const shiji = {
-  eyebrow: '以史为鉴 · Ask the Grand Historian',
-  // 司马迁《报任安书》
-  quote: ['究天人之际', '通古今之变', '成一家之言'],
-  headline: 'Two thousand years of wisdom.\nYour question today.',
-  body: 'Ask a question and get an answer shaped by the thinking of the Records of the Grand Historian.',
 }
 
 export const contact = {

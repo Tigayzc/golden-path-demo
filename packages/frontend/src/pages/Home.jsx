@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  AnimatePresence,
   MotionConfig,
   animate,
   motion,
@@ -10,7 +9,7 @@ import {
   useScroll,
   useTransform,
 } from 'motion/react'
-import { about, contact, life, profile, shiji, stats, work } from '../content/profile'
+import { about, contact, life, profile, stats } from '../content/profile'
 import LifeGallery from '../components/LifeGallery'
 import './Home.css'
 
@@ -43,9 +42,7 @@ function Nav() {
         <a href="#top" className="home-nav-brand">{profile.name}</a>
         <div className="home-nav-links">
           <a href="#about">About</a>
-          <a href="#work">Work</a>
           <a href="#life">Life</a>
-          <a href="#shiji">以史为鉴</a>
           <Link to="/under-the-hood" className="home-nav-cta">Under the Hood</Link>
         </div>
       </div>
@@ -167,65 +164,6 @@ function Stats() {
   )
 }
 
-function ShowcaseVisual({ item }) {
-  if (item.image) {
-    return <img src={item.image} alt={item.title} className="work-image" />
-  }
-  const [a, b] = item.gradient
-  return (
-    <div
-      className="work-image work-placeholder"
-      style={{ background: `radial-gradient(60% 60% at 50% 45%, ${a} 0%, ${b} 45%, transparent 75%)` }}
-      aria-hidden="true"
-    />
-  )
-}
-
-// 钉住整屏，随滚动逐个切换
-function PinnedShowcase({ id, items }) {
-  const ref = useRef(null)
-  const [active, setActive] = useState(0)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    setActive(Math.min(items.length - 1, Math.floor(p * items.length)))
-  })
-  const item = items[active]
-
-  return (
-    <section id={id} ref={ref} className="work" style={{ height: `${items.length * 100}vh` }}>
-      <div className="work-sticky">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            className="work-slide"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.04 }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <ShowcaseVisual item={item} />
-            <div className="work-copy">
-              <p className="eyebrow">{item.eyebrow}</p>
-              <h3 className="display-sm">{item.title}</h3>
-              <p className="work-desc">{item.description}</p>
-              {item.link && (
-                <a href={item.link} className="pill-link" target="_blank" rel="noopener noreferrer">
-                  Learn more ›
-                </a>
-              )}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-        <div className="work-dots" aria-hidden="true">
-          {items.map((w, i) => (
-            <span key={w.title} className={i === active ? 'is-active' : ''} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function KnowMe() {
   return (
     <section id="life" className="know-me">
@@ -241,48 +179,6 @@ function KnowMe() {
       <Reveal delay={0.2}>
         <LifeGallery photos={life.photos} />
       </Reveal>
-    </section>
-  )
-}
-
-function Shiji() {
-  return (
-    <section id="shiji" className="section shiji">
-      {/* 由容器触发（完全裁剪的子元素不会被判定为进入视口）；once: false 让每次进入都重播 */}
-      <motion.div
-        className="shiji-scroll"
-        aria-label={shiji.quote.join('，')}
-        initial="hidden"
-        whileInView="shown"
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ staggerChildren: 0.35 }}
-      >
-        {shiji.quote.map((col) => (
-          <motion.span
-            key={col}
-            className="shiji-col"
-            variants={{
-              hidden: { clipPath: 'inset(0 0 100% 0)', opacity: 0 },
-              shown: { clipPath: 'inset(0 0 0% 0)', opacity: 1 },
-            }}
-            transition={{ duration: 1.2, ease }}
-          >
-            {col}
-          </motion.span>
-        ))}
-      </motion.div>
-      <div className="shiji-copy">
-        <Reveal as="p" className="eyebrow eyebrow-gold">{shiji.eyebrow}</Reveal>
-        <h2 className="display-sm">
-          {shiji.headline.split('\n').map((line, i) => (
-            <Reveal key={line} as="span" className="display-line" delay={0.15 * i}>{line}</Reveal>
-          ))}
-        </h2>
-        <Reveal as="p" className="section-body" delay={0.3}>{shiji.body}</Reveal>
-        <Reveal delay={0.4}>
-          <span className="pill-button is-disabled">Coming soon</span>
-        </Reveal>
-      </div>
     </section>
   )
 }
@@ -338,9 +234,7 @@ function Home() {
         <Hero />
         <About />
         <Stats />
-        <PinnedShowcase id="work" items={work} />
         <KnowMe />
-        <Shiji />
         <UnderTheHoodTeaser />
         <Contact />
         <footer className="home-footer">
