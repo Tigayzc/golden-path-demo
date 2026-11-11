@@ -25,5 +25,32 @@
     "description": "The worker is running, but can not curl",
     "solution": "Go to worker and add Custom Domain. Don't add DNS or add Route. Custom Domain = DNS + TLS Certificate + Worker Binding",
     "status": "resolved"
+  },
+  {
+    "id": 4,
+    "title": "SonarCloud scan failed: Java 17 not supported",
+    "date": "2026-10-03",
+    "category": "SonarCloud",
+    "description": "CI failed at the SonarCloud scan: `Java 17 is not supported. Please upgrade to Java 21 or newer`. The old `sonarcloud-github-action@v2` is deprecated and bundles Java 17.",
+    "solution": "Replaced it with `SonarSource/sonarqube-scan-action@v8`, which auto-provisions the required JRE.",
+    "status": "resolved"
+  },
+  {
+    "id": 5,
+    "title": "SonarCloud scan failed: HTTP 403 (SONAR_TOKEN invalid)",
+    "date": "2026-10-03",
+    "category": "SonarCloud",
+    "description": "After upgrading the scan action, CI failed with `HTTP 403 Forbidden. Please check ... SONAR_TOKEN`. The token had expired.",
+    "solution": "Generated a new token at sonarcloud.io → My Account → Security, updated the `SONAR_TOKEN_GOLDENPATHDEMO` GitHub secret, and re-ran CI.",
+    "status": "resolved"
+  },
+  {
+    "id": 6,
+    "title": "Pages deploy failed: cloudflare/pages-action not found",
+    "date": "2026-10-03",
+    "category": "Cloudflare",
+    "description": "The deploy workflow failed at setup: `Unable to resolve action cloudflare/pages-action, not found`. Cloudflare deprecated this action on 21 Oct 2024 in favour of `wrangler-action`, and its repository has since been removed (404). The site kept serving the last successful build.",
+    "solution": "Following Cloudflare's official recommendation to deploy with Wrangler, switched to `npx wrangler pages deploy dist --project-name=golden-path-demo --branch=main`, matching how the API is already deployed.",
+    "status": "resolved"
   }
 ]

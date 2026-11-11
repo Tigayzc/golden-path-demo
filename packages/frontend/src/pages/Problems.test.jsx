@@ -106,8 +106,10 @@ describe('Problems', () => {
   it('renders problem categories', async () => {
     renderWithRouter(<Problems />)
     await waitFor(() => {
-      problemsData.forEach(problem => {
-        expect(screen.getByText(problem.category)).toBeInTheDocument()
+      // 同一分类可能出现在多条问题上，按出现次数校验
+      const counts = problemsData.reduce((acc, p) => ({ ...acc, [p.category]: (acc[p.category] || 0) + 1 }), {})
+      Object.entries(counts).forEach(([category, count]) => {
+        expect(screen.getAllByText(category, { selector: '.problem-category' })).toHaveLength(count)
       })
     })
   })
