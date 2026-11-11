@@ -45,7 +45,7 @@ export const life = {
 export const contact = {
   headline: "Let's talk.",
   links: [
-    { label: 'Email', href: 'mailto:hello@example.com' },
+    { label: 'Email', href: 'mailto:yvtiga@outlook.com' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
     { label: 'GitHub', href: 'https://github.com/Tigayzc' },
   ],
